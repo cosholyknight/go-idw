@@ -31,7 +31,7 @@ func InterpolateAll(lat, long float64, dataPoints []GeoPoint, power float64) (Ge
 
 	var (
 		numWind, numTemp, numHumid, numRain float64
-		denom                               float64
+		sumWeight                           float64
 	)
 
 	for _, dp := range dataPoints {
@@ -43,20 +43,20 @@ func InterpolateAll(lat, long float64, dataPoints []GeoPoint, power float64) (Ge
 		numTemp += weight * dp.Temperature
 		numHumid += weight * dp.Humidity
 		numRain += weight * dp.Rainfall
-		denom += weight
+		sumWeight += weight
 	}
 
-	if denom == 0 {
+	if sumWeight == 0 {
 		return GeoPoint{}, errors.New("sum of weights is zero")
 	}
 
 	return GeoPoint{
 		Latitude:    lat,
 		Longitude:   long,
-		WindSpeed:   numWind / denom,
-		Temperature: numTemp / denom,
-		Humidity:    numHumid / denom,
-		Rainfall:    numRain / denom,
+		WindSpeed:   numWind / sumWeight,
+		Temperature: numTemp / sumWeight,
+		Humidity:    numHumid / sumWeight,
+		Rainfall:    numRain / sumWeight,
 	}, nil
 }
 
