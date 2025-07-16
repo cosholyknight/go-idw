@@ -13,7 +13,7 @@ Inverse Distance Weighting is a deterministic method for spatial interpolation t
   - Noon temperature (°C)
   - Noon relative humidity (%)
   - 24-hour rainfall (mm)
-- Uses the **Haversine formula** (https://en.wikipedia.org/wiki/Haversine_formula) to calculate distance over the Earth's surface
+- Uses the [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula) to calculate distance over the Earth's surface
 - Easily embeddable and customizable
 - Designed for **wildfire risk modeling**, **climate analysis**, and **map visualization**
 
